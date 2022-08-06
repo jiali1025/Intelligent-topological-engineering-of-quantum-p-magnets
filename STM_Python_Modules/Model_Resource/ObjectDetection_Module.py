@@ -7,8 +7,6 @@ from detectron2 import model_zoo
 from detectron2.config import get_cfg
 from detectron2.engine import DefaultPredictor
 
-import RandomFieldFilter
-
 
 class ObjectDetection():
     """ Input: img 2D array, global x, global y for the large scale img
@@ -80,9 +78,6 @@ class ObjectDetection():
         outputs = predictor(img_1)
 
         instances = outputs["instances"]._fields
-
-        CRF = RandomFieldFilter.RF_filter(instances)
-        instances = CRF.instances  # remove odd size
 
         num = len(instances["pred_classes"])
 
