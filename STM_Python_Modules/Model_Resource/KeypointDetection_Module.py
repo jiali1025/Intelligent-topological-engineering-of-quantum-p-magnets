@@ -16,7 +16,7 @@ class KeypointDetection():
 
     def __init__(self, img, global_position, scan_size):
 
-        img = numpy.array(img, dtype=numpy.double)
+        img = numpy.array(img, dtype=numpy.float)
         img_0 = numpy.zeros_like(img)
         cv2.normalize(img, img_0, 0, 255, cv2.NORM_MINMAX)
 
@@ -30,17 +30,17 @@ class KeypointDetection():
         cfg.MODEL.DEVICE = "cpu"
         cfg.merge_from_file(model_zoo.get_config_file("COCO-Keypoints/keypoint_rcnn_R_50_FPN_1x.yaml"))
         cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1
-        cfg.INPUT.MIN_SIZE_TEST = 400
+        cfg.INPUT.MIN_SIZE_TEST = 300
         cfg.MODEL.PIXEL_MEAN = [127, 127, 127]
         cfg.MODEL.ANCHOR_GENERATOR.SIZES = [[64, 128, 256]]
         cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS = [[1.0]]
         cfg.MODEL.ANCHOR_GENERATOR.ANGLES = [[0]]
-        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.6  # set threshold for this model
+        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  # set threshold for this model
         cfg.MODEL.ROI_HEADS.NMS_THRESH_TEST = 0.2
-        cfg.MODEL.RPN.NMS_THRESH = 0.7
-        cfg.MODEL.WEIGHTS = os.path.join(self.path, "KeypointDetection_1.pth")
-        cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 4000
-        cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 1000
+        cfg.MODEL.RPN.NMS_THRESH = 0.5
+        cfg.MODEL.WEIGHTS = os.path.join(self.path, "KeypointDetection.pth")
+        cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 10000
+        cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 2000
         cfg.TEST.DETECTIONS_PER_IMAGE = 1000
         cfg.MODEL.ROI_KEYPOINT_HEAD.NUM_KEYPOINTS = 3
         return cfg

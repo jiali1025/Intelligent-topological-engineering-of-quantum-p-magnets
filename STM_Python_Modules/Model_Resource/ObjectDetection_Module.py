@@ -18,7 +18,7 @@ class ObjectDetection():
 
     def __init__(self, img, global_position, scan_size):
 
-        img = numpy.array(img, dtype=numpy.double)
+        img = numpy.array(img, dtype=numpy.float)
         img_0 = numpy.zeros_like(img)
         cv2.normalize(img, img_0, 0, 255, cv2.NORM_MINMAX)
 
@@ -37,13 +37,13 @@ class ObjectDetection():
         cfg.MODEL.ANCHOR_GENERATOR.SIZES = [[16, 32, 64, 128]]
         cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS = [[1.0]]
         cfg.MODEL.ANCHOR_GENERATOR.ANGLES = [[0]]
-        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.6  # set threshold for this model
+        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  # set threshold for this model
         cfg.MODEL.ROI_HEADS.NMS_THRESH_TEST = 0.2
         cfg.MODEL.RPN.NMS_THRESH = 0.5
         cfg.MODEL.WEIGHTS = os.path.join(self.path, "ObjectDetection.pth")
-        cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 1000
-        cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 200
-        cfg.TEST.DETECTIONS_PER_IMAGE = 100
+        cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 10000
+        cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 2000
+        cfg.TEST.DETECTIONS_PER_IMAGE = 1000
         return cfg
 
     def pos_convert(self, bbxes, W, H):
