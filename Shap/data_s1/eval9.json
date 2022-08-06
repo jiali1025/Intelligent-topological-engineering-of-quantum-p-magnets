@@ -1,0 +1,52 @@
+{
+    "images": [
+        {
+            "height": 800,
+            "width": 800,
+            "id": 1,
+            "file_name": "C:\\Users\\Laptop\\Desktop\\DECT\\New\\9.png"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "1",
+            "id": 1,
+            "name": "1"
+        },
+        {
+            "supercategory": "0",
+            "id": 0,
+            "name": "0"
+        }
+    ],
+    "annotations": [
+        {
+            "iscrowd": 0,
+            "image_id": 1,
+            "bbox": [
+                455.0,
+                344.0,
+                78.0,
+                68.0
+            ],
+
+            "category_id": 1,
+            "id": 1,
+            "area": 640000
+        },
+        {
+            "iscrowd": 0,
+            "image_id": 1,
+            "bbox": [
+                690.0,
+                245.0,
+                74.0,
+                70.0
+            ],
+
+            "category_id": 1,
+            "id": 2,
+            "area": 640000
+        }
+    ]
+}

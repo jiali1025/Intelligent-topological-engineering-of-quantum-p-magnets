@@ -1,0 +1,33 @@
+{
+    "images": [
+        {
+            "height": 673,
+            "width": 674,
+            "id": 1,
+            "file_name": "C:\\Users\\Laptop\\Desktop\\DECT\\New\\1.jpg"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "1",
+            "id": 1,
+            "name": "1"
+        }
+    ],
+    "annotations": [
+        {
+            "iscrowd": 0,
+            "image_id": 1,
+            "bbox": [
+                230.0,
+                274.0,
+                163.0,
+                170.0
+            ],
+
+            "category_id": 1,
+            "id": 1,
+            "area": 453602
+        }
+    ]
+}
