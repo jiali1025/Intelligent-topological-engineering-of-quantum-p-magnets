@@ -1,4 +1,4 @@
-from KeypointDetection_Module import KeypointDetection
+from STM_Python_Modules.Model_Resource.KeypointDetection_Module import KeypointDetection
 
 '''
 img_array = []  # small scale 2D image from scan, val range in (0,255)

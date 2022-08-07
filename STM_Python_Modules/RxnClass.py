@@ -1,4 +1,4 @@
-from ReactionClassification_Module import ReactionClassification
+from STM_Python_Modules.Model_Resource.ReactionClassification_Module import ReactionClassification
 '''
 img_array = []  # small scale 2D image from scan, val range in (0,255)
 x = []  # global x of small scale img (center) in nm

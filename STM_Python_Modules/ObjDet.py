@@ -1,4 +1,4 @@
-from ObjectDetection_Module import ObjectDetection
+from STM_Python_Modules.Model_Resource.ObjectDetection_Module import ObjectDetection
 '''
 img_array = []  # 2D image from scan, val range in (0,255)
 x = []  # global x of large scale img (center) in nm
