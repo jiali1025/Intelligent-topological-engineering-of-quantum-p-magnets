@@ -1,4 +1,3 @@
-from S1_Model import S1_Model
 import cv2
 import numpy
 
@@ -13,6 +12,7 @@ import shap
 This provides an example for shap for S1_Model(object detection)
 Load other models here to explain other models 
 """
+from Shap.S1_Model import S1_Model
 s1_model = S1_Model()
 model = s1_model.model
 
