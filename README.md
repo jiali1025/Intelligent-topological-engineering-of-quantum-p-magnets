@@ -54,7 +54,7 @@ The training scripts of the deep learning modules is in the train folder. The mo
 https://drive.google.com/drive/folders/1RqPAVn20Smia9943qSStBg4cJwq45_3e?usp=sharing
 `
 
-*Yinjun please add a running example
+Running example for deep learning modules can be found [here](Running_example/DL_modules)
 
 
 * Shap analysis
@@ -63,7 +63,7 @@ The shap analysis is to interpret our deep learning modules. It is instance-base
 
 All the codes for the shap analysis inside our project is in the Shap folder. The details of the implementation is in the paper.
 
-*Yinjun please add a running example
+Running example for shap analysis can be found [here](Running_example/Shap)
 
 
 ## Pre-requirements
