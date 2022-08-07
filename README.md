@@ -103,7 +103,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Li jiali - lijiali1994@gmail.com
 
-Yin jun - yj13558781461@gmail.com
+Yin jun - yinjun_56@qq.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
