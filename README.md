@@ -6,8 +6,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img width="890" alt="image" src="https://user-images.githubusercontent.com/44763317/183238171-4ef471bb-2df3-4908-8da4-89cd364e09c8.png">
-
 
 This github is for the project: Intelligent topological engineering of single-molecule quantum π-magnets 
 
