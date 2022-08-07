@@ -47,7 +47,7 @@ Please ensure all the python scripts and model resourses are in the same folder.
 
 * Training the deep learning modules
 
-The training scripts of the deep learning modules is in the train folder. The models are developed through pytorch.The labelled training data is provided in the link below:
+The training scripts of the deep learning modules is in the Running_example/DL_modules folder. The models are developed through pytorch.The labelled training data is provided in the link below:
 
 `
 https://drive.google.com/drive/folders/1RqPAVn20Smia9943qSStBg4cJwq45_3e?usp=sharing
