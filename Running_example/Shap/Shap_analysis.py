@@ -1,7 +1,6 @@
 import cv2
 import numpy
 
-
 from skimage.segmentation import slic
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,9 +48,6 @@ def f(z):
 # run the explainer
 explainer = shap.KernelExplainer(f, np.zeros((1, 200)))
 shap_values = explainer.shap_values(np.ones((1, 200)), nsamples=1000)  # runs model 1000 times
-
-explainer = shap.explainers.Permutation(model, img)
-shap_value_single = explainer(img)
 
 
 # plot our explanations
