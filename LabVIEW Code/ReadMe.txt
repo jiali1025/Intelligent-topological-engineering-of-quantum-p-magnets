@@ -1,1 +1,0 @@
-This work is done using LabVIEW 2020 and LabVIEW Nanonis controller. The machine learning model is attached, which python version = 3.6.
