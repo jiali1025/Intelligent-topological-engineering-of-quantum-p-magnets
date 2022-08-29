@@ -12,7 +12,7 @@ This github is for the project: Intelligent topological engineering of single-mo
 
 We have built a deep learning infrastructure to realize atomically precise multi-bond surgery of single-molecule quantum π-magnets. The deep learning infrastructure consists of several deep learning models and can communicate with the instrument smoothly via the labview based control system.
 
-The details of the deep learning models and the control system are demonstrated inside the paper. 
+The details of the deep learning models and the control system are demonstrated inside the paper to submit. 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
