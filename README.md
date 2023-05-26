@@ -89,6 +89,8 @@ Install Labview via https://www.ni.com/en-sg/support/downloads/software-products
 
 Install the Lavbiew-Nanonis programming interface via https://www.specs-group.com/nc/nanonis/products/detail/programming-interface/
 
+Typical install: 30 mins
+
 
 <!-- LICENSE -->
 ## License
