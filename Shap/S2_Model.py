@@ -1,23 +1,17 @@
-import os
 from multiprocessing.spawn import freeze_support
 
 import numpy
-import torch
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
 from detectron2.data.datasets import register_coco_instances
 from detectron2.engine import DefaultPredictor
-import json
-from detectron2.data import DatasetCatalog, MetadataCatalog
+from detectron2.data import MetadataCatalog
 
-import cv2
-
-from detectron2.evaluation import COCOEvaluator, inference_on_dataset, LVISEvaluator
+from detectron2.evaluation import COCOEvaluator
 
 
 class S2_Model:
     def __init__(self):
-        self.count = 0
         freeze_support()
 
         register_coco_instances("mol_val", {}, r"Shap/data_s2/eval1.json",
@@ -41,7 +35,7 @@ class S2_Model:
         cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
         cfg.MODEL.ROI_HEADS.NMS_THRESH_TEST = 0.2
         cfg.MODEL.RPN.NMS_THRESH = 0.7
-        cfg.MODEL.WEIGHTS = r"Shap/data_s2/backup.pth"
+        cfg.MODEL.WEIGHTS = r"Shap/data_s2/KeypointDetection.pth"
         cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 1000
         cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 200
         cfg.TEST.DETECTIONS_PER_IMAGE = 100
@@ -52,30 +46,38 @@ class S2_Model:
         self.evaluator = COCOEvaluator("mol_val", cfg, False, output_dir="./output/")
 
     def model(self, imgs):
-        # with open(r"C:\Users\Laptop\Desktop\DECT\eval.json") as json_file:
-        #     data = json.load(json_file)
-
-        # val_loader = build_detection_test_loader(cfg, "mol_val")
-        # results = inference_on_dataset(predictor.model, val_loader, evaluator)
         inputs = [{}]
         inputs[0]["image_id"] = 1
 
-        APs = numpy.zeros((len(imgs), 1))
+        true_points = numpy.array([
+            [
+                387.0,
+                398.0
+            ],
+            [
+                239.5,
+                436.0
+            ],
+            [
+                278.0,
+                308.5
+            ]
+        ])
+
+        loss = numpy.zeros((len(imgs), 1))
 
         for i, img in enumerate(imgs):
             outputs = [self.predictor(img)]
-            # del outputs[0]["instances"]._fields["pred_keypoints"]
-            # del outputs[0]["instances"]._fields["pred_keypoint_heatmaps"]
-            if len(outputs[0]["instances"]._fields["pred_classes"]) > 0:
-                APs[i] = 1
-            # self.evaluator.reset()
-            # self.evaluator.process(inputs, outputs)
-            # results = self.evaluator.evaluate()
-            # APs[i] = results["bbox"]["AP"]
+            if len(outputs[0]["instances"]._fields["pred_boxes"]) == 0:
+                loss[i] = -100
+            else:
+                pred_points = outputs[0]["instances"]._fields["pred_keypoints"].cpu().numpy().squeeze()
+                pred_points = pred_points[:, :2]
 
-        APs = numpy.nan_to_num(APs, copy=True, nan=0)
+                loss1 = min(numpy.linalg.norm(pred_points[0, :] - true_points, axis=1))
+                loss2 = min(numpy.linalg.norm(pred_points[1, :] - true_points, axis=1))
+                loss3 = min(numpy.linalg.norm(pred_points[2, :] - true_points, axis=1))
 
-        print(self.count)
-        self.count += 1
+                loss[i] = -(loss1 + loss2 + loss3)
 
-        return APs
+        return loss

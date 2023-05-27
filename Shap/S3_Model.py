@@ -1,13 +1,7 @@
-import os
-from multiprocessing.spawn import freeze_support
-
 import numpy
 import torch
-import json
 import torch.nn as nn
 import cv2
-
-from detectron2.evaluation import COCOEvaluator, inference_on_dataset, LVISEvaluator
 
 
 class CNN_struc(nn.Module):
@@ -21,7 +15,6 @@ class CNN_struc(nn.Module):
 
         self.fc1 = nn.Linear(24 * 16 * 16, 100)
         self.fc2 = nn.Linear(100, 3)
-
 
     def forward(self, x):
         # x [N, 1, 128, 128]
@@ -38,17 +31,13 @@ class S3_Model:
     def __init__(self):
         self.cnn_model = CNN_struc()
         self.cnn_model.load_state_dict(torch.load(r"Shap/data_s3/ReactionClassification.pth"))
-        # with open(r"C:\Users\Laptop\Desktop\DECT\eval.json") as json_file:
-        #     data = json.load(json_file)
         self.count = 0
-        # val_loader = build_detection_test_loader(cfg, "mol_val")
-        # results = inference_on_dataset(predictor.model, val_loader, evaluator)
 
     def model(self, imgs):
         losses = numpy.zeros((len(imgs), 1))
 
         for i, img in enumerate(imgs):
-            img = cv2.resize(img[:,:,0], (128, 128))
+            img = cv2.resize(img[:, :, 0], (128, 128))
             img = torch.from_numpy(img).view(1, 1, 128, 128).float()
             outputs = self.cnn_model(img)
             f = torch.nn.Softmax()

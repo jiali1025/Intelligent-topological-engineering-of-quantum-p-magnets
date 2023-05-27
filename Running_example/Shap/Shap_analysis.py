@@ -11,20 +11,21 @@ import shap
 This provides an example for shap for S1_Model(object detection)
 Load other models here to explain other models 
 """
-from Shap.S1_Model import S1_Model
-s1_model = S1_Model()
-model = s1_model.model
+from Shap.S2_Model import S2_Model
+
+s2_model = S2_Model()
+model = s2_model.model
 
 # load an image
-img_0 = cv2.imread(r"Shap/data_s1/1.png")  # Image to be detected
+img_0 = cv2.imread(r"Shap/data_s2/3.jpg")
+img_0 = cv2.cvtColor(img_0, cv2.COLOR_BGR2RGB)
 gray = cv2.cvtColor(img_0, cv2.COLOR_RGB2GRAY)
 img = numpy.zeros_like(img_0)
 for i in range(3):
     img[:, :, i] = gray  # Convert to grayscale for inference
 
-
 # segment the image so we don't have to explain every pixel
-segments_slic = slic(img, n_segments=150, compactness=0.1, sigma=1)
+segments_slic = slic(img, n_segments=200, compactness=0.1, sigma=2)
 h, w = segments_slic.shape
 new_map = np.zeros_like(segments_slic)
 
@@ -45,9 +46,10 @@ def mask_image(zs, segmentation, image, background=None):
 def f(z):
     return model(mask_image(z, segments_slic, img, None))
 
+
 # run the explainer
 explainer = shap.KernelExplainer(f, np.zeros((1, 200)))
-shap_values = explainer.shap_values(np.ones((1, 200)), nsamples=1000)  # runs model 1000 times
+shap_values = explainer.shap_values(np.ones((1, 200)), nsamples=2000)  # runs model 1000 times
 
 
 # plot our explanations
@@ -72,6 +74,4 @@ axes[1].axis('off')
 
 cb = fig.colorbar(im, ax=axes.ravel().tolist(), label="SHAP value", orientation="horizontal", aspect=60)
 cb.outline.set_visible(False)
-plt.savefig(r"Shap/data_s1/1_test.png", dpi=1200)
-
-
+plt.savefig(r"Shap/data_s2/test.png", dpi=1200)

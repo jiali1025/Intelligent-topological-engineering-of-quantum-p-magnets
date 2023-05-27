@@ -1,18 +1,13 @@
-import os
 from multiprocessing.spawn import freeze_support
 
 import numpy
-import torch
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
 from detectron2.data.datasets import register_coco_instances
 from detectron2.engine import DefaultPredictor
-import json
-from detectron2.data import DatasetCatalog, MetadataCatalog
 
-import cv2
-
-from detectron2.evaluation import COCOEvaluator, inference_on_dataset, LVISEvaluator
+from detectron2.data import MetadataCatalog
+from detectron2.evaluation import COCOEvaluator
 
 
 class S1_Model:
@@ -20,7 +15,7 @@ class S1_Model:
         self.count = 0
         freeze_support()
 
-        register_coco_instances("mol_val", {}, r"Shap/data_s1/eval0.json",
+        register_coco_instances("mol_val", {}, r"Shap/data_s1/eval1.json",
                                 r"Shap/data_s1")
 
         mol_metadata = MetadataCatalog.get("mol_val")
@@ -49,11 +44,7 @@ class S1_Model:
         self.evaluator = COCOEvaluator("mol_val", cfg, False, output_dir="./output/")
 
     def model(self, imgs):
-        # with open(r"C:\Users\Laptop\Desktop\DECT\eval.json") as json_file:
-        #     data = json.load(json_file)
 
-        # val_loader = build_detection_test_loader(cfg, "mol_val")
-        # results = inference_on_dataset(predictor.model, val_loader, evaluator)
         inputs = [{}]
         inputs[0]["image_id"] = 1
 
