@@ -1,4 +1,4 @@
-![image](https://github.com/jiali1025/Intelligent-topological-engineering-of-quantum-p-magnets/assets/44763317/d228eafd-0423-41c8-a734-80647225478a)<a name="readme-top"></a>
+
 # Intelligent-topological-engineering-of-quantum-p-magnets
 
 
