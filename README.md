@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+![image](https://github.com/jiali1025/Intelligent-topological-engineering-of-quantum-p-magnets/assets/44763317/d228eafd-0423-41c8-a734-80647225478a)<a name="readme-top"></a>
 # Intelligent-topological-engineering-of-quantum-p-magnets
 
 
@@ -107,6 +107,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Li jiali - lijiali1994@gmail.com
 
 Yin jun - yinjun_56@qq.com
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Data Detail -->
+## Data Detail
+
+In this study, consistent training and test datasets were utilized, with a 70/30 train-test split applied across all intelligent modules. A validation set was not incorporated, as hyperparameter tuning was not deemed necessary for model performance. The training datasets included 98 samples for the TI module, 46 for the SJ module, and 13 for the PC module. The test datasets consisted of 42 samples for the TI module, 19 for the SJ module, and 6 for the PC module.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
